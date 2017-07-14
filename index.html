@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MobileStore">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Store</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="container">
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="page-header">Mobile Store</h2>
+    </div>
+</div>
+
+        <div ng-controller="StoreController as store" class="row" >
+            <div ng-repeat="mobile in store.mobiles" class="col-md-6">
+                <img  class="product" ng-src="{{mobile.image}}">
+                <h3>Name: {{mobile.name}}</h3>
+                <h3>color: {{mobile.color}}</h3>
+                <h3>Memory: {{mobile.memory}}</h3>
+                <h3>Price: &#8360; {{mobile.price}}</h3>
+                <button type="button" ng-hide="{{mobile.isSoldOut}}" class="btn btn-secondary">BUY NOW</button>
+                <ul class="nav nav-tabs">
+                    <li ng-class="{''active':mobile.activeTab==='Description'}">
+                        <a class="nav-link active" ng-click="store.setActiveTab(mobile,'Description')">Description</a>
+                    </li>
+                    <li ng-class="{''active':mobile.activeTab==='Specifications'}">
+                        <a class="nav-link" ng-click="store.setActiveTab(mobile,'Specifications')">Specifications</a>
+                    </li>
+                    <li ng-class="{''active':mobile.activeTab==='Reviews'}">
+                        <a class="nav-link" ng-click="store.setActiveTab(mobile,'Reviews')">Reviews</a>
+                    </li>
+
+                </ul>
+                <p ng-show="mobile.activeTab==='Description'">
+                   Description goes here
+                </p>
+                <p ng-show="mobile.activeTab==='Specifications'">
+                 Specifications goes here
+                </p>
+                <p ng-show="mobile.activeTab==='Reviews'">
+                   Reviews goes here
+                </p>
+            </div>
+        </div>
+<script src="angular.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
